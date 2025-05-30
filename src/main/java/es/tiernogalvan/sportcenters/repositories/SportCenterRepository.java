@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface SportCenterRepository extends JpaRepository<SportCenter, String> {
     List<SportCenter> findSportCentersByCapacityBetween(int min, int max);
+
 }

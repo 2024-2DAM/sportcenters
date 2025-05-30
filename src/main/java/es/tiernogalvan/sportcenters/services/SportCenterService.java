@@ -38,7 +38,34 @@ public class SportCenterService {
         return repository.save(sportCenter);
     }
 
-    public List<SportCenter> getByCapacity(int min, int max){
+    public List<SportCenter> getByCapacity(int min, int max) {
         return repository.findSportCentersByCapacityBetween(min, max);
+    }
+
+    public SportCenter update(String name, SportCenter sportCenter) {
+        //esta función como queráis!!!!!!! Jugad con
+        //Quiero comprobar si está
+
+        SportCenter s = repository.findById(name).orElse(null);
+
+        if (s == null) {
+            // System.out.println(name);
+            return null;
+        } else {
+            //Lo actualizo:
+
+            System.out.println("------------------_" + s);
+            if (sportCenter.getName() != null)
+                s.setName(sportCenter.getName());
+            if (sportCenter.getOwner() != null)
+                s.setOwner(sportCenter.getOwner());
+            if (sportCenter.getCapacity() != null)
+                s.setCapacity(sportCenter.getCapacity());
+            return repository.save(s);
+        }
+    }
+
+    public void delete(String name) {
+        repository.deleteById(name);
     }
 }
